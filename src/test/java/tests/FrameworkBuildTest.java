@@ -1,19 +1,27 @@
 package tests;
 
+import Utils.TestDataProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import pages.*;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import java.io.IOException;
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class FrameworkBuildTest extends BaseTest {
 
+    static Stream<Map<String, String>> eventData() throws IOException {
+        return TestDataProvider.readJson("src/test/resources/testData_events.json").stream();
+    }
 
-    @Test
-    public void testSomething() {
+    @ParameterizedTest
+    @MethodSource("eventData")
+    public void testSomething(Map<String, String> data) {
 
-        String eventTitle = "Event Peri";
+//        String eventTitle = data.get("title");
 
         LoginPage loginPage = new LoginPage(page, baseurl);
         DashboardPage dashboardPage = loginPage.loginToApplication();
@@ -26,14 +34,14 @@ public class FrameworkBuildTest extends BaseTest {
         AdminEventsPage adminEventsPage = new AdminEventsPage(page);
         adminEventsPage.navigateToAdminEventsPage();
         adminEventsPage.createEvent(
-                eventTitle,
-                "This is a test event",
-                "Conference",
-                "My City",
-                "Venue",
-                "2026-10-18T12:30",
-                "190",
-                "300");
+                data.get("title"),
+                data.get("description"),
+                data.get("category"),
+                data.get("city"),
+                data.get("venue"),
+                data.get("date"),
+                data.get("price"),
+                data.get("totalSeats"));
 //        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Create Event")).click();
 //        assertThat(page.getByText("Event created successfully")).isVisible();
 
@@ -41,16 +49,16 @@ public class FrameworkBuildTest extends BaseTest {
         eventsPage.goToEventsPage();
 
         eventsPage.waitForEventToLoad();
-        Locator targetCard = eventsPage.findEventCard(eventTitle);
+        Locator targetCard = eventsPage.findEventCard(data.get("title"));
         int seatsNumberBefore = eventsPage.getSeatsCount(targetCard);
         BookingFormPage bookingFormPage = eventsPage.clickOnEventCard(targetCard);
 
 
 // Book the tickets functionality
         bookingFormPage.clickAndConfirm(
-                "Test User",
-                "testuser@gmail.com",
-                "07987654321");
+                data.get("fullName"),
+                data.get("email"),
+                data.get("phone"));
 
         String booking_ref = page.locator(".booking-ref").innerText();
         page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("View My Bookings")).click();

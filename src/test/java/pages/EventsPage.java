@@ -28,7 +28,7 @@ public class EventsPage {
     public Locator findEventCard(String titleCard) {
         Locator eventCards = waitForEventToLoad();
         Locator targetCard = eventCards.filter(new Locator.FilterOptions().setHasText(titleCard));
-        assertThat(targetCard).isVisible();
+        assertThat(targetCard.first()).isVisible();
         return targetCard;
     }
 

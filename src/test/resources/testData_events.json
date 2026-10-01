@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Some Event John",
+    "description": "This is a test event",
+    "category": "Conference",
+    "city": "My City",
+    "venue": "Venue",
+    "date": "2026-10-18T12:30",
+    "price": "190",
+    "totalSeats": "300",
+    "fullName": "Test User",
+    "email": "testuser@gmail.com",
+    "phone": "07987654321"
+  },
+
+  {
+    "title": "Another Event Nani",
+    "description": "This is a another event",
+    "category": "Conference",
+    "city": "My City",
+    "venue": "Venue",
+    "date": "2026-10-18T12:30",
+    "price": "190",
+    "totalSeats": "300",
+    "fullName": "Test User",
+    "email": "testuser@gmail.com",
+    "phone": "07987654321"
+
+
+
+
+  }
+]

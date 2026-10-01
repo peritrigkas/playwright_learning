@@ -52,7 +52,7 @@ public class BasicsTest {
 //        page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Create Event")).click();
 //        assertThat(page.getByText("Event created successfully")).isVisible();
 
-        page.getByPlaceholder("Event title").fill("Event Peri");
+        page.getByPlaceholder("Event title").fill("Event Chris");
         page.getByPlaceholder("Describe the event…").fill("This is a test event");
         page.getByLabel("Category").selectOption("Conference");
         page.getByLabel("City").fill("Cardiff");
@@ -68,8 +68,8 @@ public class BasicsTest {
         page.navigate("https://eventhub.rahulshettyacademy.com/events");
         page.waitForTimeout(5000);
         Locator eventCards =  page.getByTestId("event-card");
-        Locator targetCard = eventCards.filter(new Locator.FilterOptions().setHasText("Peri"));
-        assertThat(targetCard).isVisible(); // 5 secs wait by default when assertion happens
+        Locator targetCard = eventCards.filter(new Locator.FilterOptions().setHasText("Chris"));
+        assertThat(targetCard.first()).isVisible(); // 5 secs wait by default when assertion happens
 
        String seats = targetCard.getByText("seats").innerText();
        System.out.println(seats);
