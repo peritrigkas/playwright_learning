@@ -16,7 +16,7 @@ public class BaseTest {
     Playwright playwright;
     Page page;
     Browser browser;
-    String base_url;
+    String baseurl;
     @BeforeEach
     public void setUp() throws IOException {
 
@@ -40,7 +40,7 @@ public class BaseTest {
 //        Browser browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
 //        Browser browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));
         page = browser.newPage();
-        base_url = prop.getProperty("qa.base_url");
+        baseurl = prop.getProperty("qa.baseurl");
 
 
     }
