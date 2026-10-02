@@ -4,6 +4,7 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
@@ -35,6 +36,7 @@ public class MockWebTest {
         playwright.close();   // also closes the browser and pages
     }
 
+    @Tag("smoke")
     @Test
     public void testSomething() {
 

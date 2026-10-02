@@ -23,14 +23,15 @@ public class BaseTest {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream("src/test/resources/config.properties");
         prop.load(fis);
-        String browserName = prop.getProperty("browser");
+        String browserName = System.getProperty("browser")!=null ? System.getProperty("browser") : prop.getProperty("browser");
+//        String browserName = prop.getProperty("browser");
         playwright = Playwright.create();
         if(browserName.equals("firefox")) {
             browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
         } else if(browserName.equals("webkit")) {
             browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));
         } else {
-            browser = playwright.webkit().launch(new BrowserType.LaunchOptions().setHeadless(false));
+            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
         }
 
 

@@ -7,7 +7,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class AdminEventsPage {
 
     Page page;
-    private static final String EVENT_TITLE_PLACEHOLDER = "Event Title";
+    private static final String EVENT_TITLE_PLACEHOLDER = "Title";
     private static final String EVENT_DESCRIPTION_PLACEHOLDER = "Describe the event…";
     private static final String EVENT_CATEGORY_LABEL = "Category";
     private static final String EVENT_CITY_LABEL = "City";
@@ -23,11 +23,13 @@ public class AdminEventsPage {
 
     public void navigateToAdminEventsPage() {
 
-        page.navigate("https://eventhub.rahulshettyacademy.com/admin/events");
+       page.navigate("https://eventhub.rahulshettyacademy.com/admin/events");
+       page.waitForTimeout(3000);
+
     }
 
     public void createEvent(String title, String description, String category, String city, String venue, String date, String price, String totalSeats  ) {
-        page.getByPlaceholder(EVENT_TITLE_PLACEHOLDER).fill(title);
+        page.getByLabel(EVENT_TITLE_PLACEHOLDER).fill(title);
         page.getByPlaceholder(EVENT_DESCRIPTION_PLACEHOLDER).fill(description);
         page.getByLabel(EVENT_CATEGORY_LABEL).selectOption(category);
         page.getByLabel(EVENT_CITY_LABEL).fill(city);
@@ -40,4 +42,5 @@ public class AdminEventsPage {
         assertThat(page.getByText("Event created!")).isVisible();
 
     }
+
 }

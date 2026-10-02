@@ -5,6 +5,7 @@ import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class APITest {
 
     Playwright playwright;
-
+    @Tag("smoke")
     @Test
     public void e2eApiTest() {
 

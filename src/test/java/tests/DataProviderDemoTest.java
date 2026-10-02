@@ -2,6 +2,7 @@ package tests;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
@@ -14,7 +15,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class DataProviderDemoTest {
-
+    @Tag("smoke")
     // Data written inline - each row runs the test once
     @ParameterizedTest
     @CsvSource({

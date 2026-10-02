@@ -3,6 +3,7 @@ package tests;
 import Utils.TestDataProvider;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import pages.*;
@@ -11,12 +12,14 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class FrameworkBuildTest extends BaseTest {
 
     static Stream<Map<String, String>> eventData() throws IOException {
         return TestDataProvider.readJson("src/test/resources/testData_events.json").stream();
     }
-
+    @Tag("smoke")
     @ParameterizedTest
     @MethodSource("eventData")
     public void testSomething(Map<String, String> data) {
