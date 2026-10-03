@@ -40,3 +40,6 @@ build/
 
 ### Compiled classes ###
 *.class
+
+### Allure ###
+allure-report/
